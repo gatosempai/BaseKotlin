@@ -26,3 +26,17 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // Sdk and tools
+    // Support library and architecture components support minSdk 14 and above.
+    minSdkVersion = 21
+    compileSdkVersion = 28
+
+    // App dependencies
+    room_version = '2.1.0'
+    room_implementation_version = '2.1.1'
+    lifecycle_version = '2.0.0'
+    lifecycle_implementation_version = '2.1.0'
+    worker_version = '2.2.0'
+}
