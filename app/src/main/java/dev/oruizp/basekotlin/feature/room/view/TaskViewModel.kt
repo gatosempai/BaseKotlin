@@ -23,5 +23,11 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun updateTask(id: Int, description: String, priority: Int, date: Date) {
         val taskEntity = TaskEntity(description, priority, date)
         taskEntity.id = id
+        taskRepository.updateTask(taskEntity)
+    }
+
+    fun deleteTask(description: String, priority: Int, date: Date) {
+        val taskEntity = TaskEntity(description, priority, date)
+        taskRepository.deleteTask(taskEntity)
     }
 }
