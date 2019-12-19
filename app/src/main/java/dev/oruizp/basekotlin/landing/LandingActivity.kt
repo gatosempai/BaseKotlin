@@ -1,9 +1,11 @@
 package dev.oruizp.basekotlin.landing
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.oruizp.basekotlin.R
+import dev.oruizp.basekotlin.feature.room.view.TaskActivity
 import dev.oruizp.basekotlin.landing.LandingFeature.*
 import kotlinx.android.synthetic.main.activity_landing.*
 
@@ -36,7 +38,7 @@ class LandingActivity : AppCompatActivity(), ItemClickListener {
     }
 
     private fun launchRoom() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        launchActivity(TaskActivity::class.java)
     }
 
     private fun launchService() {
@@ -53,6 +55,11 @@ class LandingActivity : AppCompatActivity(), ItemClickListener {
 
     private fun launchPaging() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun launchActivity(calledActivity: Class<*>) {
+        val launchingIntent = Intent(this, calledActivity)
+        startActivity(launchingIntent)
     }
 
     private fun fillList(): List<LandingData> {
