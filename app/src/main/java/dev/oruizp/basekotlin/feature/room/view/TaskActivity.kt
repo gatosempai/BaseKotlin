@@ -1,5 +1,6 @@
 package dev.oruizp.basekotlin.feature.room.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_task.*
 
 class TaskActivity : AppCompatActivity(), TaskItemClickListener {
 
+    val EXTRA_TASK_ID = "extraTaskId"
     private val newTaskId = 0
     private lateinit var taskAdapter: TaskAdapter
 
@@ -29,7 +31,7 @@ class TaskActivity : AppCompatActivity(), TaskItemClickListener {
 
     private fun setUpView() {
         fab.setOnClickListener {
-            launchDetailActivity(newTaskId)
+            launchDetailActivity(0)
         }
     }
 
@@ -37,7 +39,7 @@ class TaskActivity : AppCompatActivity(), TaskItemClickListener {
         val taskViewModel = ViewModelProviders.of(this)
             .get(TaskViewModel::class.java)
         taskViewModel.getTasks()?.observe(this, Observer {
-            taskAdapter.itemList = it
+            (recyclerViewTasks.adapter as TaskAdapter).itemList = it
         })
     }
 
@@ -54,6 +56,8 @@ class TaskActivity : AppCompatActivity(), TaskItemClickListener {
     }
 
     private fun launchDetailActivity(id: Int) {
-        // launch detail activity
+        val intent = Intent(this, TaskDetailActivity::class.java)
+        intent.putExtra(EXTRA_TASK_ID, id)
+        startActivity(intent)
     }
 }

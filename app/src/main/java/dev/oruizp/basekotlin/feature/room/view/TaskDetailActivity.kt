@@ -21,7 +21,7 @@ class TaskDetailActivity : AppCompatActivity() {
     val PRIORITY_MEDIUM = 2
     val PRIORITY_LOW = 3
     // Constant for default task id to be used when not in update mode
-    val DEFAULT_TASK_ID = -1
+    val DEFAULT_TASK_ID = 0
     var mTaskId = DEFAULT_TASK_ID
 
     private lateinit var taskViewModel: TaskViewModel
